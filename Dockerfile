@@ -1,18 +1,19 @@
-FROM ubuntu:14.04
+FROM elevy/java:7
 
-RUN apt-get update && \
-apt-get install -y curl openjdk-7-jre-headless python
+ENV ZK_VERSION 3.4.6
 
-# https://www.apache.org/mirrors/dist.html
-RUN curl -fL http://apache.mirror.digitalpacific.com.au/zookeeper/stable/zookeeper-3.4.6.tar.gz | tar xzf - -C /opt && \
-mv /opt/zookeeper-3.4.6 /opt/zookeeper
+RUN mkdir -p /zookeeper/data /zookeeper/wal && \
+    curl -SL http://mirrors.ibiblio.org/apache/zookeeper/stable/zookeeper-${ZK_VERSION}.tar.gz | tar zxf - --strip-components=1 -C /zookeeper && \
+    curl -SL https://dist.apache.org/repos/dist/release/zookeeper/KEYS | gpg -q --import - && \
+    gpg -q --verify /zookeeper/zookeeper-${ZK_VERSION}.jar.asc
 
-VOLUME /tmp/zookeeper
-
+COPY zoo.cfg /zookeeper/conf/
 COPY entrypoint.sh /
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT [ "/entrypoint.sh" ]
 
-ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/zookeeper/bin
+ENV PATH /zookeeper/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 
-CMD ["zkServer.sh", "start-foreground"]
+CMD [ "zkServer.sh", "start-foreground" ]
+
+EXPOSE 2181 2888 3888
