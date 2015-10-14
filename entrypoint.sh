@@ -1,10 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 
 echo ${MYID:-1} > /zookeeper/data/myid
 
-# server.1=...
 if [ -n "$SERVERS" ]; then
-  python -c "print '\n'.join(['server.%i=%s:2888:3888' % (i + 1, x) for i, x in enumerate('$SERVERS'.split(','))])" >> /zookeeper/conf/zoo.cfg
+	IFS=\, read -a servers <<<"$SERVERS"
+	for i in "${!servers[@]}"; do 
+		printf "\nserver.%i=%s:2888:3888" "$i" "${servers[$i]}" >> /zookeeper/conf/zoo.cfg
+	done
 fi
 
 cd /zookeeper
