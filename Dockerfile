@@ -11,7 +11,9 @@ RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     tar -zx -C /zookeeper --strip-components=1 -f zookeeper-${ZK_VERSION}.tar.gz && \
     rm -f zookeeper-* && \
     cd /zookeeper && \
-    rm -Rf contrib/fatjar dist-maven docs src
+    rm -Rf contrib/fatjar dist-maven docs src bin/*.cmd && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y patch && \
+    curl -sSL https://issues.apache.org/jira/secure/attachment/12665829/ZOOKEEPER-1948.patch | patch -p0
 
 COPY zoo.cfg /zookeeper/conf/
 COPY log4j.properties /zookeeper/conf/
