@@ -23,8 +23,9 @@ ENTRYPOINT [ "/entrypoint.sh" ]
 
 ENV PATH=/zookeeper/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
     ZOO_LOG_DIR=/zookeeper/log \
-    ZOO_LOG4J_PROP="INFO, CONSOLE, ROLLINGFILE"
+    ZOO_LOG4J_PROP="INFO, CONSOLE, ROLLINGFILE" \
+    JMXPORT=9010
 
 CMD [ "zkServer.sh", "start-foreground" ]
 
-EXPOSE 2181 2888 3888
+EXPOSE 2181 2888 3888 9010
