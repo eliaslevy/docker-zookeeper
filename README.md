@@ -82,7 +82,7 @@ spec:
             medium: Memory
       containers:
         - name: server
-          image: elevy/zookeeper
+          image: elevy/zookeeper:latest
           env:
             - name: MYID
               value: "1"
@@ -120,7 +120,7 @@ spec:
             medium: Memory
       containers:
         - name: server
-          image: elevy/zookeeper
+          image: elevy/zookeeper:latest
           env:
             - name: MYID
               value: "2"
@@ -158,7 +158,7 @@ spec:
             medium: Memory
       containers:
         - name: server
-          image: elevy/zookeeper
+          image: elevy/zookeeper:latest
           env:
             - name: MYID
               value: "3"
