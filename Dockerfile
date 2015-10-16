@@ -25,7 +25,7 @@ ENV PATH=/zookeeper/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:
     ZOO_LOG4J_PROP="INFO, CONSOLE, ROLLINGFILE" \
     JMXPORT=9010
 
-USER zookeeper
+#USER zookeeper
 
 ENTRYPOINT [ "/entrypoint.sh" ]
 
