@@ -8,7 +8,7 @@ RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     curl -sSLO http://www.apache.org/dist/zookeeper/zookeeper-${ZK_VERSION}/zookeeper-${ZK_VERSION}.tar.gz.asc && \
     curl -sSL  https://dist.apache.org/repos/dist/release/zookeeper/KEYS | gpg -q --import - && \
     gpg -q --verify zookeeper-${ZK_VERSION}.tar.gz.asc && \
-    tar -zx -C /zookeeper --strip-components=1 -f zookeeper-${ZK_VERSION}.tar.gz && \
+    tar -zx -C /zookeeper --strip-components=1 --no-same-owner -f zookeeper-${ZK_VERSION}.tar.gz && \
     rm -f zookeeper-* && \
     cd /zookeeper && \
     rm -Rf contrib/fatjar dist-maven docs src bin/*.cmd && \
