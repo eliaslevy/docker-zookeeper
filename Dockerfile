@@ -20,6 +20,7 @@ RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     chmod a+rwx /zookeeper/data /zookeeper/wal /zookeeper/log
 
 ADD  conf /zookeeper/conf/
+COPY bin/zkReady.sh /zookeeper/bin/
 COPY entrypoint.sh /
 
 ENV PATH=/zookeeper/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
