@@ -4,7 +4,9 @@ ENV ZK_VERSION 3.4.6
 
 RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     cd /tmp && \
-    curl -sSLO http://mirrors.ibiblio.org/apache/zookeeper/stable/zookeeper-${ZK_VERSION}.tar.gz && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y jq && \
+    MIRROR=`curl --stderr /dev/null https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred'` && \
+    curl -sSLO "${MIRROR}/zookeeper/stable/zookeeper-${ZK_VERSION}.tar.gz" && \
     curl -sSLO http://www.apache.org/dist/zookeeper/zookeeper-${ZK_VERSION}/zookeeper-${ZK_VERSION}.tar.gz.asc && \
     curl -sSL  https://dist.apache.org/repos/dist/release/zookeeper/KEYS | gpg -q --import - && \
     gpg -q --verify zookeeper-${ZK_VERSION}.tar.gz.asc && \
