@@ -99,11 +99,6 @@ spec:
               name: data
             - mountPath: /zookeeper/wal
               name: wal
-          readinessProbe:
-            initialDelaySeconds: 10
-            exec:
-              command:
-                - /zookeeper/bin/zkReady.sh
 ---
 apiVersion: v1
 kind: ReplicationController
@@ -142,11 +137,6 @@ spec:
               name: data
             - mountPath: /zookeeper/wal
               name: wal
-          readinessProbe:
-            initialDelaySeconds: 10
-            exec:
-              command:
-                - /zookeeper/bin/zkReady.sh
 ---
 apiVersion: v1
 kind: ReplicationController
@@ -185,9 +175,4 @@ spec:
               name: data
             - mountPath: /zookeeper/wal
               name: wal
-          readinessProbe:
-            initialDelaySeconds: 10
-            exec:
-              command:
-                - /zookeeper/bin/zkReady.sh
 ```
