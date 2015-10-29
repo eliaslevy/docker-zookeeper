@@ -5,6 +5,7 @@ ENV ZK_VERSION 3.4.6
 RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     cd /tmp && \
     apk --update add ca-certificates curl jq gnupg tar patch bash && \
+    eval $(gpg-agent --daemon) && \
     MIRROR=`curl -sS https://www.apache.org/dyn/closer.cgi\?as_json\=1 | jq -r '.preferred'` && \
     curl -sSLO "${MIRROR}/zookeeper/stable/zookeeper-${ZK_VERSION}.tar.gz" && \
     curl -sSLO http://www.apache.org/dist/zookeeper/zookeeper-${ZK_VERSION}/zookeeper-${ZK_VERSION}.tar.gz.asc && \
