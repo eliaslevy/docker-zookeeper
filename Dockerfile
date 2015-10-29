@@ -16,6 +16,7 @@ RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     apk del curl jq gnupg tar patch && \
     rm -rf \
       /tmp/* \
+      /root/.gnupg \
       /var/cache/apk/* \
       /zookeeper/contrib/fatjar \
       /zookeeper/dist-maven \
