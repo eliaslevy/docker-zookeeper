@@ -1,3 +1,5 @@
+[![](https://badge.imagelayers.io/elevy/zookeeper:latest.svg)](https://imagelayers.io/?images=elevy/zookeeper:latest 'Get your own badge on imagelayers.io')
+
 ZooKeeper image based on the mesoscloud/zookeeper image. Modified by turning on quorumListenOnAllIP on the config file. This allows a ZooKeeper ensemble to operate within Kubernetes using Service IP addresses.
 
 The following Kubernetes config will create a reliable three node ZK ensemble. The ZK containers will be restarted if they terminate within their node, and they will be started in a new node if their current node dies.
