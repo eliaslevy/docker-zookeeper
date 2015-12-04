@@ -12,7 +12,6 @@ RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     curl -sSL  https://dist.apache.org/repos/dist/release/zookeeper/KEYS | gpg -v --import - && \
     gpg -v --verify zookeeper-${ZK_VERSION}.tar.gz.asc && \
     tar -zx -C /zookeeper --strip-components=1 --no-same-owner -f zookeeper-${ZK_VERSION}.tar.gz && \
-    curl -sSL https://issues.apache.org/jira/secure/attachment/12665829/ZOOKEEPER-1948.patch | patch -d /zookeeper -p0 && \
     apk del curl jq gnupg tar patch && \
     rm -rf \
       /tmp/* \
