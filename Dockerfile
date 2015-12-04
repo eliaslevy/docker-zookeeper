@@ -1,6 +1,6 @@
 FROM develar/java
 
-ENV ZK_VERSION 3.4.6
+ENV ZK_VERSION 3.4.7
 
 RUN mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     cd /tmp && \
