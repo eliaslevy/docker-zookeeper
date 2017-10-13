@@ -24,7 +24,7 @@ RUN apk add --no-cache --virtual .build-deps \
     #
     # Set up directories
     #
-    mkdir -p /zookeeper/{data,wal,log} && \
+    mkdir -p /zookeeper/data /zookeeper/wal /zookeeper/log && \
     #
     # Install
     tar -x -C /zookeeper --strip-components=1 --no-same-owner -f /tmp/zk.tgz && \
@@ -46,7 +46,9 @@ RUN apk add --no-cache --virtual .build-deps \
       lib/jdiff \
       recipes \
       src \
-      zookeeper-*.{asc,md5,sha1} && \
+      zookeeper-*.asc \
+      zookeeper-*.md5 \
+      zookeeper-*.sha1 && \
     #
     # Clean up
     apk del .build-deps && \
